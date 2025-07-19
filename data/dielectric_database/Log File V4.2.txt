@@ -1,0 +1,270 @@
+Change log of the material parameter database
+
+The IT'IS material parameter database provides the electromagnetic, thermal, flow, and acoustic properties as well as T1/T2 relaxation times of many biological tissues and fluids, together with their uncertainty. Particular care is taken to provide reliable parameters for all tissues included in the Virtual Population models. We believe that providing transparency to the user promotes the quality of our services, which is the major goal of IT'IS. We therefore include a log file giving information about all the changes that occur in the tissue parameter database over time.
+-------------------------------------------------------------------------------
+
+22.03.2024 (Release 4.2)
+
+- Update of tissue densities that adds the standard deviation values from the original publications. Using the same formula as with the low frequency database (Release 4.1)
+
+- Addition of an additional set of dielectric properties from Sasaki et al., 2014. Publication used original dielectric measurement data from Gabriel et al., 1996 to create refitted Cole-Cole parameters.
+
+- Additional alternative names.
+	Air:			Air_sac to Air_internat, Air_abdominal, Air_ears, Air_mouth, Air_neck, Air_nose_sinuses, Air_neck, Intestine_gas
+	Adrenal Gland:		Adrenal_gland_left, Adrenal_gland_right
+	Blood:			Arteries_brain, Veins_brain, Veins_opthalmic, Blood_vessels_body, Blood_Vessles_(Circle_of_Willis)_,Veins_of_brain
+	Blood Vessel Wall:	Choroid_plexus_left, Choroid_plexus_right
+	Bone (Cancellous):	Vertebra_cancellous_L6, Vertebra_cancellous _L7, Vertebra_cancellous _tail_1, Vertebra_cancellous _tail_2, Vertebra_cancellous _tail_3, Vertebra_cancellous_tail_4, Vertebra_cancellous_tail_5, Vertebra_cancellous_tail_6, Vertebra_cancellous_tail_7, Vertebra_cancellous_tail_8, Vertebra_cancellous_tail_9, Vertebra_cancellous_tail_10, Vertebra_cancellous_tail_11, Vertebra_cancellous_tail_12, Vertebra_cancellous_tail_13, Vertebra_cancellous_tail_14, Vertebra_cancellous_tail_15, Vertebra_cancellous_tail_16, Carpal_bones_cancellous_left, Carpal_bones_cancellous_right, Clavicle_cancellous_left, Metacarpal_bones_cancellous_right, Metatarsal_bones_cancellous_left, Rib_1_cancellous_right, Rib_2_cancellous_left, Rib_2_cancellous_right, Rib_3_cancellous_left, Rib_3_cancellous_right, Rib_4_cancellous_left, Rib_4_cancellous_right, Rib_5_cancellous_left, Rib_5_cancellous_right, Rib_6_cancellous_left, Rib_6_cancellous_right, Rib_7_cancellous_left, Rib_7_cancellous_right, Rib_8_cancellous_left, 
+			  	Rib_8_cancellous_right, Rib_9_cancellous_left, Rib_9_cancellous_right, Rib_10_cancellous_left, Rib_10_cancellous_right, Rib_11_cancellous_left, Rib_11_cancellous_right, Rib_12_cancellous_left, Rib_12_cancellous_right, Sacrum_cancellous, Scapula_cancellous_left, Scapula_cancellous_right, Tarsal_bones_cancellous_left, Tarsal_bones_cancellous_right, Sacrum_cancellous, Vertebrae_cancellous, Vertebra_cancellous_L6, Vertebra_cancellous_L7, Vertebra_cancellous_tail_1, Vertebra_cancellous_tail_10, Vertebra_cancellous_tail_11, Vertebra_cancellous_tail_12, Vertebra_cancellous_tail_13, Vertebra_cancellous_tail_14, Vertebra_cancellous_tail_16, Vertebra_cancellous_tail_2, Vertebra_cancellous_tail_3, Vertebra_cancellous_tail_4, Vertebra_cancellous_tail_5, Vertebra_cancellous_tail_6, Vertebra_cancellous_tail_7, Vertebra_cancellous_tail_8, Vertebra_cancellous_tail_9,Foot_back_cancellous_left, Foot_back_cancellous_right, Foot_front_cancellous_left, Foot_front_cancellous_rightVertebrae_cancellous_caudal_1,
+				Vertebrae_cancellous_caudal_2, Vertebrae_cancellous_caudal_3, Vertebrae_cancellous_cervical, Vertebrae_cancellous_lumbar_sacral, Vertebrae_cancellous_thoracic
+	Bone (Cortical):  	Nails, Vertebra_cortical_L6, Vertebra_cortical_L7, Vertebra_cortical_tail_1, Vertebra_cortical_tail_2, Vertebra_cortical_tail_3, Vertebra_cortical_tail_4, Vertebra_cortical_tail_5, Vertebra_cortical_tail_6, Vertebra_cortical_tail_7, Vertebra_cortical_tail_8, Vertebra_cortical_tail_9, Vertebra_cortical_tail_10, Vertebra_cortical_tail_11, Vertebra_cortical_tail_12, Vertebra_cortical_tail_13, Vertebra_cortical_tail_14, Vertebra_cortical_tail_15Vertebra_cortical_tail_16, Carpal_bones_cortical_left, Carpal_bones_cortical_right, Clavicle_cortical_left, Clavicle_cortical_right, Metacarpal_bones_cortical_left, Metacarpal_bones_cortical_right, Metatarsal_bones_cortical_left, Metatarsal_bones_cortical_right, Rib_1_cortical_left, Rib_1_cortical_right, Rib_2_cortical_left, Rib_2_cortical_right, Rib_3_cortical_left, Rib_3_cortical_right, Rib_4_cortical_left, Rib_4_cortical_right, Rib_5_cortical_left, Rib_5_cortical_right, Rib_6_cortical_left, Rib_6_cortical_right, Rib_7_cortical_left, 
+			  	Rib_7_cortical_right, Rib_8_cortical_left, Rib_8_cortical_right, Rib_9_cortical_left, Rib_9_cortical_right, Rib_10_cortical_left, Rib_10_cortical_right, Rib_11_cortical_left, Rib_11_cortical_right, Rib_12_cortical_left, Rib_12_cortical_right, Scapula_cortical_left, Scapula_cortical_right, Tarsal_bones_cortical_left, Tarsal_bones_cortical_right, Vertebrae_cortical, Bones_(cortical), Rib_and_vertebrae(cortical), Vertebra_cortical_L6, Vertebra_cortical_L7, Vertebra_cortical_tail_1, Vertebra_cortical_tail_10, Vertebra_cortical_tail_11, Vertebra_cortical_tail_12, Vertebra_cortical_tail_13, Vertebra_cortical_tail_14, Vertebra_cortical_tail_15, Vertebra_cortical_tail_16, Vertebra_cortical_tail_2, Vertebra_cortical_tail_3, Vertebra_cortical_tail_4, Vertebra_cortical_tail_5, Vertebra_cortical_tail_6, Vertebra_cortical_tail_7, Vertebra_cortical_tail_8, Vertebra_cortical_tail_9, Foot_back_cortical_left, Foot_back_cortical_right, Foot_front_cortical_left, Foot_front_cortical_right,Vertebrae_cortical_caudal_1,
+				Vertebrae_cortical_caudal_2, Vertebrae_cortical_caudal_3, Vertebrae_cortical_cervical, Vertebrae_cortical_lumbar_sacral, Vertebrae_cortical_thoracic
+	Brain (Grey Matter):	Accumbens_left, Accumbens_right, Amygdala_left, Amygdala_right, Caudate_left, Caudate_right, Cerebellum_grey_matter_left, Cerebellum_grey_matter_right, Diencephalon_ventral_left, Diencephalon_ventral_right, Mammilary_body_left, Mammillary_body, Mammilary_body_right, Pallidum_left, Pallidum_right, Putamen_left, Putamen_right, Vermis_grey_matter, Accumbens_area, Cerebral_grey_matter, Pallidum, Septum_pellucidum, Substancia_nigra_subthalamic_nucleus_lgn_ventraldc, Bulbus_olfactorius
+
+	Brain (White Matter):	Cerebellum_white_matter_left, Cerebellum_white_matter_right, Vermis_white_matter, Cerebral_white_matter, Vermis_white_matter
+	Cartilage:		Sacrum_cartilaginous_bone, Long_bones_joint_and_femur_cartilage, Secondary_ossification_centers_in_long_bones
+	Cerebellum:		Cerebellum_cortex, Vermis
+	Cerebrospinal Fluid:	CSF_3rd_ventricle, CSF_4th_ventricle, CSF_brain, CSF_lateral_ventricle_left, CSF_lateral_ventricle_right, CSF_spine, CSF(brain), CSF(spinal_cord)
+	Dura:			Meninges_dura, Meninges_spine, Meninges(brain), Meninges(spinal_cord)
+	Eye (Aqueous Humor):	Eye_aqueous_humour
+	Eye (Choroid):		Eye_choroid_left,Eye_choroid_right
+	Eye (Ciliary Body):	Eye_ciliary_muscles_left, Eye_ciliary_muscles_right
+	Eye (Cornea):		Eye_cornea_left, Eye_cornea_right
+	Eye (Lens):		Eye_lens_left, Eye_lens_right
+	Eye (Sclera):		Eye_sclera_left, Eye_sclera_right
+	Eye (Vitreous Humor):	Eye_vitreous_body_left, Eye_vitreous_body_right, Eye_vitreous_humour
+	Fat:			Fat_intrabdominal, Fat_between_muscles, Fat_intra_abdominal_chest
+	Kidney:			Kindeys, Kidney_left, Kidney_right
+	Lung:			Lung_left, Lung_right
+	Lymph Node:		Lymphoid_tissue
+	Mucous Membrane:	Mucosa_nasal_cavity
+	Muscle:			Eye_muscles_extraocular, Oviduct_left, Oviduct_right, Muscle_ocular, Eye_muscle, Muscle_periocular
+	Nerve:			Optic_nerve_left, Optic_nerve_right, Nerve_cranial_II_optic, Cranial_Nerves_(Large_Branches_5_8_9), Cranial_nerves, Optic_nerves	
+	Ovary:			Ovary_left, Ovary_right
+	Salivary Gland:		Sublingual_glands
+	Tooth:		  	Teeth_upper,Teeth_lower,Tooth_erupted,Tooth_unerupted,Upper_teeth,Teeth_upper,Teeth_lower, Lower_teeth
+	Trachea:		Trachea_and_main_bronchi
+	Urinary Bladder Wall:	Bladder_urinary_wall
+
+- Removed alternativ name:
+	Brain (Grey Matter) 	Pineal Body
+
+- Changes to alternative names
+	Following alternative names have been moved from Eye (Vitreous Humor) to Eye (Aqueous Humor): Eye_Aqueous_Humor, (Eye, Aqueous Humor), Eye - Aqueous, Eye Aqueous 	
+
+- Added tissue speed of sound values or substiutions for: Eye (Cornea), Eye (Iris), Eye (Lens), Eye (Retina), Eye (Sclera)
+- Added heat transfer rate values or substituitons for: Eye (Choroid), Eye (Ciliary Body), Eye (Iris), Eye (Retina)
+- Corrected viscosity values for Blood (Plasma) and Blood (Serum)
+- Acoustic attenuation for Spinal Cord is now substituted by Brain
+- Acoustic attenuation for Mucus Membrane is now subsituted by Muscle
+- Added values for exctracellular fluid density
+- Removed T1/T2 relaxation times of blood vessel wall and added new values at 3 tesla
+- Corrected dielectric property values for urine
+
+-------------------------------------------------------------------------------
+
+22.10.2021 (release 4.1)
+
+-Update to the low frequency conductivity database.
+ 
+-Tissues no longer substituted by other tissues in the low frequency database:
+		-Breast Fat
+		-Breats Gland
+		-Connective Tissue
+		-Dura
+		-Hypophysis
+		-Medulla Oblingata
+		-Midbrain
+		-Pons
+		-Skull (Cancellous)
+		-Skull (Cortical
+		-Spinal Cord
+		-Thalamus
+	-Anisotropy is only reported in two main directions
+
+-New tissues added:
+	-Extracellular Fluids
+	-Skull
+	-Skull Suture (website only)
+
+-Literature Values added to tissues
+	-Speed of Sound:
+		-Eye (Aqueous Humor)
+		-Eye (Choroid)
+		-Eye (Ciliary Body)
+		-Eye (Cornea)
+		-Eye (Iris)
+		-Eye (Lens)
+		-Eye (Retina)
+		-Eye (Sclera)
+
+-New substitute acoustic properties (attenuation constant) and relaxation times added for eye tissues:
+	-Eye (Aqueous Humor)
+	-Eye (Choroid)
+	-Eye (Ciliary Body)
+	-Eye (Iris)
+	-Eye (Retina)
+
+	
+-------------------------------------------------------------------------------
+
+15.05.2018 (release 4.0)
+
+-Elemental Fractions are added as a separate database
+-New Tissues added, containing dielectric and thermal properties: Eye (Aqueous Humor), Eye (Choroid), Eye (Ciliary Body), Eye (Iris), Eye (Retina)
+	
+-------------------------------------------------------------------------------
+
+12.10.2016 (release 3.1)
+
+-Low frequency conductivies have been revised. The data is porvided as an average over the frequency range of 1Hz and 1 MHz. 
+-Added dielectric properties for water.
+-Magnetic parameters (magnetic conductivity, magnetic permittivity) that were previously handled internally in S4L are now incuded in the database.
+-For tissues that are made up by the average of multiple other tissues n equals the number of tissues used in the average. Only the average value of the tissues are used to generate the value, std. div, min and max of the tissue.
+-The following tissues have have been assigned new alternative names:
+	Bone (Cortical):	Thorax_cortical, Carpalia_Metacarpalia_cortical_left, Carpalia_Metacarpalia_cortical_right, Metatarsus_I_cortical_right ,Metatarsus_I_cortical_left , Metatarsus_II_cortical_right, Metatarsus_II_cortical_left, Metatarsus_III_cortical_right, Metatarsus_III_cortical_left, Metatarsus_IV_cortical_right, Metatarsus_IV_cortical_left, Metatarsus_V_cortical_right, Metatarsus_V_cortical_left, Phalanx_proximalis_I_cortical_foot_left, Phalanx_proximalis_I_cortical_foot_right, Phalanx_proximalis_II_cortical_foot_left, Phalanx_proximalis_II_cortical_foot_right, Phalanx_proximalis_III_cortical_foot_left, Phalanx_proximalis_III_cortical_foot_right, Phalanx_proximalis_IV_cortical_foot_left, Phalanx_proximalis_IV_cortical_foot_right, Phalanx_proximalis_V_cortical_foot_left, Phalanx_proximalis_V_cortical_foot_right, Phalanx_media_II_cortical_foot_left, Phalanx_media_II_cortical_foot_right, Phalanx_media_III_cortical_foot_left, Phalanx_media_III_cortical_foot_right, Phalanx_media_IV_cortical_foot_left, 
+				Phalanx_media_IV_cortical_foot_right, Phalanx_media_V_cortical_foot_left, Phalanx_media_V_cortical_foot_right, Phalanx_distalis_I_cortical_foot_left, Phalanx_distalis_I_cortical_foot_right, Phalanx_distalis_II_cortical_foot_left, Phalanx_distalis_II_cortical_foot_right, Phalanx_distalis_III_cortical_foot_left, Phalanx_distalis_III_cortical_foot_right, Phalanx_distalis_IV_cortical_foot_left, Phalanx_distalis_IV_cortical_foot_right, Phalanx_distalis_V_cortical_foot_left, Phalanx_distalis_V_cortical_foot_right,
+				Teeth (Bone Cortical)
+	Bone (Cancellous):	Thorax_cancellous, Carpalia_Metacarpalia_cancellous_left, Carpalia_Metacarpalia_cortical_right, Metatarsus_I_cancellous_right, Metatarsus_I_cancellous_left,Metatarsus_II_cancellous_right,Metatarsus_II_cancellous_left,Metatarsus_III_cancellous_right,Metatarsus_III_cancellous_left,Metatarsus_IV_cancellous_right,Metatarsus_IV_cancellous_left,Metatarsus_V_cancellous_right, Metatarsus_V_cancellous_left,Phalanx_proximalis_I_cancellous_foot_left,Phalanx_proximalis_I_cancellous_foot_right,Phalanx_proximalis_II_cancellous_foot_left, Phalanx_proximalis_II_cancellous_foot_right,Phalanx_proximalis_III_cancellous_foot_left,Phalanx_proximalis_III_cancellous_foot_right,Phalanx_proximalis_IV_cancellous_foot_left, Phalanx_proximalis_IV_cancellous_foot_right,Phalanx_proximalis_V_cancellous_foot_left, Phalanx_proximalis_V_cancellous_foot_right,Phalanx_media_II_cancellous_foot_left, Phalanx_media_II_cancellous_foot_right,Phalanx_media_III_cancellous_foot_left, Phalanx_media_III_cancellous_foot_right,
+				Phalanx_media_IV_cancellous_foot_left, Phalanx_media_IV_cancellous_foot_right,Phalanx_media_V_cancellous_foot_left, Phalanx_media_V_cancellous_foot_right,Phalanx_distalis_I_cancellous_foot_left, Phalanx_distalis_I_cancellous_foot_right,Phalanx_distalis_II_cancellous_foot_left, Phalanx_distalis_II_cancellous_foot_right,Phalanx_distalis_III_cancellous_foot_left, Phalanx_distalis_III_cancellous_foot_right,Phalanx_distalis_IV_cancellous_foot_left, Phalanx_distalis_IV_cancellous_foot_right,Phalanx_distalis_V_cancellous_foot_left, Phalanx_distalis_V_cancellous_foot_right
+	Bone Marrow (Red):	Bone Marrow (Infiltrated)
+	Cerebrospinal Fluid:	Cerebro Spinal Fluid
+	Eye (Cornea):		Eye, Cornea
+	Eye (Sclera):		Eye Tissues (Sclera)
+	Eye (Vitreous Humor):	Vitreous Humor
+	Eye Lens (Cortex):	Lens Cortex
+	Skin:			Skin (Dry)
+	Thyroid Gland:		Thyroid  -- EM
+-New Tissues: Skull (Cancellous), Skull (Cortical)
+-The alternative name, Scrotum, has been moved from muscle to skin
+-The alternative name, Brain, Olfactory Bulb, has been moved from nerve to Brain (Grey Matter)
+-An error in the speed of sound was fixed. Thymus took by mistake the value of tooth. It now is the average of lymphnode and fat.
+-The values of Hypothalamus are now substituted by Brain (Grey Matter) instead of Hypophysis.
+
+
+-------------------------------------------------------------------------------
+01.10.2015 (release 3.0)
+-New properties: Acoustic and T1/T2 relaxation times are added to the material parameter database.
+	Acoustic Properties:	-tissue speed of sound [m/s]
+				-non-linearity B/A
+				-attenuation constant a0 [Np/m/MHz] ; b
+	Relaxation Times :	-1.5T – T1 [ms]
+				-1.5T – T2 [ms]
+				-3.0T – T1 [ms]
+				-3.0T – T2 [ms]
+
+-To ensure compatibility of the material properties database with the MIDA model, the tissues included in the MIDA model have been added to the list of alternative names associated to each corresponding tissue whenever possible.
+-One additional value was added to calculate the density of the placenta, which results in a higher density. This increase is within the 5% limit
+-The alternative names: Cochlea, Cochlea_Ductus_semicirculares and Cochlea_ductus_semicirculares have been moved from Bone (Cortical) to Cerebrospinal Fluid.
+-A typo in the tissue name Eye (Vitrous Humor) has been corrected to Eye (Vitreous Humor). The typo has been added to the alternative names.
+-The duplicate alternative names of Bone Marrow (Yellow), BoneMarrow (NotInfiltrated)and  Marrow (white) have been deleted in the alternative names for Bone Marrow (Red).
+-The duplicate alternative name of Testis, Albuginean Tunici, has been deleted form the alternative names of Connective Tissue.
+- When no publication was found for any property and/or tissue, the number of publication is 0 and no value is provided. If a given property makes no sense for a given tissue, the number of publication is 0 and all entries are set to 0 
+-------------------------------------------------------------------------------
+
+13.01.2015 (release 2.6)
+
+-Materials that are not perfused with blood display heat transfer and heat generate rate values of 0. The number of publications associated with those entries has been changed from 1 to 0. The materials to which those changes apply are: Air, Bronchi lumen, Esophagus lumen, Fat (not infiltrated), Large Intestine lumen, Pharynx, Small Intestine lumen, Stomach lumen, Trachea lumen
+
+-The Tissues Bone, Patella and Skull are no longer handled as separate tissues. The tissue names and all the associated alternative names have been moved to the alternative names of Bone (Cortical).
+-The following tissues have have been assigned new alternative names:
+	Bone (Cortical):	foot_left, foot_right, Lunatum_cortical_right, Hand_right, Hand_left
+	Bone Marrow (Red):	Hand_marrow_left, Hand_marrow_right
+	Commissura Anterior: 	commissura_anterior
+	Commissura Posterior:	commissura_posterior
+	Eye (Cornea):		cornea
+	Tendon\Ligament:	Tendon_ligament
+	Urine: 			Urinary Bladder
+	Vertebrae:		Vertebrae_toracal, Vertebrae_lumbal_sacral
+	
+-The following duplicate alternative names have been deleted:
+	Esophagus_lumen:	Esophagus
+	Ureter\Urethra:		Oviduct
+	Vertebrae: 		Vertebra_cortical_C1, Vertebra_cortical_C2, Vertebra_cortical_C3, Vertebra_cortical_C4, Vertebra_cortical_C5, Vertebra_cortical_C6, Vertebra_cortical_C7, Vertebra_cortical_T1, Vertebra_cortical_T2, Vertebra_cortical_T3, Vertebra_cortical_T4, Vertebra_cortical_T5, Vertebra_cortical_T6, Vertebra_cortical_T7, Vertebra_cortical_T8, Vertebra_cortical_T9, Vertebra_cortical_T10, Vertebra_cortical_T11, Vertebra_cortical_T12, Vertebra_cortical_L1, Vertebra_cortical_L2, Vertebra_cortical_L3, Vertebra_cortical_L4, Vertebra_cortical_L5, Vertebra_cortical_os_sacrum_coccyx, Hand_right, Hand_left
+
+-The following tissues have been assigned own dielectric properties and do no longer use substitute values.
+	Tissue:			Former substitute source:
+	Adrenal Gland		Thyroid
+	Lymphnode		Thyroid
+	Intervertebral Disc	Cartilage
+	Thymus			Thyroid
+	Salivary Gland		Thyroid
+	Urine			Urinary Bladder Wall
+- The tissue Urinary Bladder has been renamed to Urine. Urinary Bladder is now an alternative name for Urine. 
+- All the properties specific to Urine (alias Urinary Bladder) have been updated using additional data point, which resulted in noticeable changes in the averages: average values have changed by 1% for density, 7% for thermal conductivity, and 13% for heat capacity. The heat transfer rate was set to 0. 
+- The following parameters for the following tissues and fluids have been updated, using additional data points. Changes to the calculated averages remain below 5%. 
+	Density:		Air, Breast Gland, Bronchi lumen, Esophagus lumen, Pharynx
+	Heat Capacity: 		Air, Bronchi lumen, Esophagus lumen, Pharynx
+	Thermal Conductivity: 	Air, Bronchi lumen, Esophagus lumen, Pharynx
+	Heat Transfer Rate: 	Kidney Cortex, Lymphnode
+- (Temperature-dependent) Viscosity values of the following fluids are tabulated in a new online viscosity database: Air, Blood, Blood Plasma, Blood Serum, Cerebrospinal Fluid, Lymph, Urine, Vitreous Humor, and Water (those values are however included together with the temperature-dependent values listed below in the fluid properties Excel sheet available in the downloads section)
+- Temperature dependent air density, heat capacity, thermal conductivity values have been added at the bottom of the relevant online databases (but are included together with the viscosity values listed above in the fluid properties Excel sheet available in the downloads section)  
+-------------------------------------------------------------------------------
+
+01.08.2014 (release 2.5)
+- The formula to calculate the average and standard deviation for the heat transfer rate has been updated for liver, kidney, and muscle. This update results in changes of up to 10% in the calculated averages. 
+- The Heat Transfer Rate and the Heat Generation Rate for Blood Vessel Wall have been updated from 10000ml/min/kg to 150ml/min/kg for the former and from 0W/kg to 2.32W/kg for the latter.  
+- Tumor has been deleted as an alternative name for breast gland
+- Under dielectric properties, the source name of the following tissues has changed (this change has no consequence on the parameter value)
+	Tissue:		Old source:	New source:
+	Larynx		Larynx		Cartilage
+	Meniscus	Meniscus	Cartilage
+	Pineal Body	Pineal Body	Thyroid Gland
+	Stomach Lumen	Stomach Lumen	Muscle
+- The following tissues have acquired new alternative names:
+	Dura: Dura_mater
+	Muscle: Oviduct
+	Mucous Membrane: Uterus_mucosa
+- The following names are from now on alternative names to yellow bone marrow instead of red bone marrow: @Ulna_yellow_marrow_right@Radius_yellow_marrow_left@Radius_yellow_marrow_right@Humerus_yellow_marrow_left@Humerus_yellow_marrow_right@Tibia_yellow_marrow_left@Tibia_yellow_marrow_right@Fibula_yellow_marrow_left@Fibula_yellow_marrow_right@Femur_yellow_marrow_left@Femur_yellow_marrow_right@
+
+-------------------------------------------------------------------------------
+
+30.07.2013 (release 2.4)
+- To give a more precise assignment, the identification of the 'source' for the dielectric properties of Skin was changed to Skin (Dry) instead of simply Skin.
+- Comment to the changes made in the release 2.3 for the tissue Mucosa: The dielectric properties of this tissue were assigned to those of the tissue Skin (Wet) (releases 1.0 to 2.2). The assignment was changed in the release 2.3 to the tissue Muscle due to the similar water content of Mucosa and Muscle.
+- ERROR NOTE: The conductivity value for the tissue Fat was corrected for frequencies lower than 120 Hz. This value was wrong due to a transcription error.
+- ERROR NOTE: The density of the Connective Tissue was changed to the average of the density of Fat and Tendon/Ligament instead of the average of Tendon/Ligament and Bone (Cortical).
+
+------------------------------------------------------------------------------- 
+
+11.02.2013 (release 2.3)
+- Frequencies lower than 120 Hz: Conductivity values for the tissue Fat were added.
+- Frequencies lower than 120 Hz: The naming of the column "number of studies" was changed to "number of values".
+- Compatibility with models v3.0 was added.
+- ERROR NOTE: The values of Lung Deflated and Lung Inflated were inverted for frequencies lower than 120 Hz and were switched in this version of the material parameter database.
+- ERROR NOTE: The values of Mucosa were not correct and are correct in this version of the material parameter database.
+- ERROR NOTE: The number of studies in the column heat transfer rate were 10 times too high.
+-------------------------------------------------------------------------------
+
+11.07.2012 (release 2.2)
+- ERROR NOTE: The heat generation rate values were changed. The correct values are now online.
+- A change log file that provides information about all changes and errors that occurred in the tissue parameter database was added.
+-------------------------------------------------------------------------------
+
+22.06.2012 (release 2.1)
+- ERROR NOTE: The heat transfer rates and the heat generation rates were inverted and were switched in this version of the material parameter database. CAUTION! There are still wrong values online in this release version (the heat generation rate is given wrongly as factor 10 of the heat transfer rates).
+-------------------------------------------------------------------------------
+
+21.05.2012 (release 2.0)
+- CONDUCTIVITY VALUES FOR FREQUENCIES LOWER THAN 120 Hz: New low frequency parameters measured in different directions (Across, Longitudinal, Mixed) were added to the database.
+- Compatibility with a wider range of models such as mice, rats, posable models, and the new elderly male Glenn is provided with this version of the database due to the addition of "alternative names".
+- Additional information regarding the dielectric properties was added. Some tissues were not measured directly, but their values were obtained from related measured tissues. With the column "source" the provenience of each value is given.
+- Various typos in the "alternative names" were removed.
+-------------------------------------------------------------------------------
+
+26.09.2011 (release 1.0)
+- The material parameter database goes online.
+------------------------------------------------------------------------------- 
+
+ 
+
+
+
+
+
+
+
+
+
+

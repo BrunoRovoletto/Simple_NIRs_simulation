@@ -1,0 +1,45 @@
+Table 2 "Average parameters for reduced scattering coefficient, mu_s [cm^-1], for tissues"
+for i=1:7 --> skin, brain, breast, bone, soft, fibrous, fatty                             
+   name(i).s = name of tissue type                                                        
+   mn(i,:) = mean values of [a, b, a', fray, bmie]                                        
+   sd(i,:) = std deviations                                                               
+   nn(i,:) = number of cited values averaged                                              
+Citation: SL Jacques, Optical properties of biological tissues: a review,                 
+Phys. Med. Biol. 58 (2013) R37?R61, doi:10.1088/0031-9155/58/11/R37                       
+
+label,a,b,a',f_ray,b_mie
+
+Skin
+Mean:,46.0,1.421,48.0,0.409,0.702
+SD:,13.7,0.517,10.6,0.178,0.351
+n:,    8,8,7,7,7
+
+Brain
+Mean:,24.2,1.611,27.4,0.315,1.087
+SD:,11.7,1.063,10.5,0.368,1.386
+n:,    8,8,8,8,8
+
+Breast
+Mean:,16.8,1.055,18.7,0.288,0.685
+SD:,8.1,0.771,7.0,0.273,0.984
+n:,    8,8,8,8,8
+
+Bone
+Mean:,22.9,0.716,15.3,0.022,0.326
+SD:,14.6,0.682,7.9,0.032,0.298
+n:,    3,3,2,2,2
+
+Other soft tissues
+Mean:,18.9,1.286,19.1,0.153,1.091
+SD:,10.2,0.521,11.3,0.216,0.483
+n:,   18,18,10,10,10
+
+Other fibrous tissues
+Mean:,27.1,1.627,29.2,0.489,0.644
+SD:,5.0,0.115,5.4,0.274,0.572
+n:,    5,5,5,5,5
+
+Fatty tissue
+Mean:,18.4,0.672,19.3,0.174,0.447
+SD:,9.0,0.242,9.1,0.111,0.263
+n:,    6,6,5,5,5
