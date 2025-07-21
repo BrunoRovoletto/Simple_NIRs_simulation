@@ -580,4 +580,4 @@ rr = [['depths',depths], ['res_0',res_0], ['res_0_inf',res_0_inf], ['res_04',res
 
 
 for r in rr:
-    plot_spectrum(r[1], label=r[0], root_dir='/workspace/outputs/1')
+    plot_spectrum(r[1], label=r[0], root_dir='/workspace/Simple_NIRs_simulation/outputs/1')
