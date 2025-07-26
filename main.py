@@ -6,10 +6,12 @@ import matplotlib.pyplot as plt
 
 # Load water absorption data
 # df = pd.read_csv('/home/bruno/Desktop/keorkle/Brain Reading/code/data/water_data.csv', header=0)
-water_skull_data = pd.read_csv('/workspace/Simple_NIRs_simulation/data/super_extended_water_skull_data.csv', header=0)
+#water_skull_data = pd.read_csv('/workspace/Simple_NIRs_simulation/data/super_extended_water_skull_data.csv', header=0)
+#water_skull_data=water_skull_data.drop(columns='Unnamed: 0')
+water_skull_data = pd.read_csv('/workspace/Simple_NIRs_simulation/data/low_super_extended_water_skull_data.csv', header=0)
 
 
-water_skull_data=water_skull_data.drop(columns='Unnamed: 0')
+
 
 def plot_spectrum(
     y,
@@ -51,9 +53,13 @@ def plot_spectrum(
     if log:
         ax.loglog(x, y, label=label, linewidth=2)
         ax.loglog(x, water_skull_data['mu_a_water'], alpha=0.4, linestyle='--', label='Water μa')
+        secax = ax.secondary_yaxis('right')
+        secax.set_ylabel('mu_a water (m^-1)')
     else:
         ax.plot(x, y, label=label, linewidth=2)
         ax.plot(x, water_skull_data['mu_a_water'], alpha=0.4, linestyle='--', label='Water μa')
+        secax = ax.secondary_yaxis('right')
+        secax.set_ylabel('mu_a water (m^-1)')
 
     # Define band shading
     bands = {
@@ -69,6 +75,8 @@ def plot_spectrum(
     ax.axhline(1.0, color='k', linestyle='--', linewidth=1, alpha=0.7)
     ax.axhline(2.0, color='k', linestyle='-.', linewidth=1, alpha=0.7)
 
+    ax.axhline(30.0, color='purple', linestyle='--', linewidth=1, alpha=0.7, label='transcranial threshold')
+
     # Vertical markers (wavelengths in nm)
     vlines = {
         '1 mm λ (1e6 nm)': 1e6,
@@ -79,7 +87,7 @@ def plot_spectrum(
         'Mid-IR mark (2188 nm)': 2188,
     }
     for name, pos in vlines.items():
-        ax.axvline(pos, linestyle=':', linewidth=1, alpha=0.6)
+        ax.axvline(pos, linestyle=':', linewidth=1, alpha=0.6, label = str(pos))
 
     # Labels and styling
     ax.set_xlabel('Wavelength (nm)', fontsize=12)
@@ -512,31 +520,36 @@ arrhenius_threshold = 0.00321 # Equivalent to CEM 43 degrees Celsius for 10 minu
 
 arrhenius_threshold_pulse = arrhenius_threshold / 100
 
-max_stimulation_per_trial = 16
+max_stimulation_per_trial = 10000
 
 tau_brain = 2
 
 #           1. Figure out how many logical CPUs (hardware threads) you have:
 max_workers = os.cpu_count()   # e.g. 16 on a 8‑core/16‑thread machine
 print(f"Detected {max_workers} logical CPUs")
-amplitude_grid = np.logspace(12, 30, 8)
-pulse_freq_grid = np.logspace(2, 14, 8)
-pulse_duration_grid= np.logspace(-16, -4, 8)
+
+
+amplitude_grid = np.logspace(18, 23, 10)
+pulse_freq_grid = np.logspace(2, 9, 10)
+pulse_duration_grid= np.logspace(-14, -6, 10)
+
+
+
 # 2. Build the list of argument‑dicts you want to map:
 tasks = []
 for wavelength, mu_water, mu_skull in water_skull_data.values:
     tasks.append({
         'wavelength': wavelength,
         'amplitude_grid': amplitude_grid,
-        'mu_a_brain': mu_water * 100,
+        'mu_a_brain': (mu_water) * 100,
         'mu_s_brain_p': 7 * 100,
         'pulse_freq_grid': pulse_freq_grid,
         'pulse_duration_grid': pulse_duration_grid,
         'skull': True,
-        'mu_a_skull': mu_skull * 100,
+        'mu_a_skull': (mu_skull) * 100,
         'mu_s_skull_p': 7 * 100,
-        'skull_thickness_mm': 5.5,
-        'NEP': 1e-13,
+        'skull_thickness_mm': 5.8,
+        'NEP': 1e-14,
         'arrhenius_threshold': arrhenius_threshold,
         'arrhenius_threshold_pulse': arrhenius_threshold_pulse,
         'max_stimulation_per_trial': max_stimulation_per_trial,
@@ -545,10 +558,16 @@ for wavelength, mu_water, mu_skull in water_skull_data.values:
         'num_loops': len(water_skull_data['lambda'])
     })
 
+def run_optimize_pulse_schedule(kwargs):
+    return optimize_pulse_schedule(**kwargs)
 
+with ProcessPoolExecutor(max_workers=190) as executor:
 
+    results = list(executor.map(run_optimize_pulse_schedule, tasks))
+
+'''
 # 3. Spawn a pool of worker processes:
-with ProcessPoolExecutor(max_workers=45) as executor:
+with ProcessPoolExecutor(max_workers=185) as executor:
     futures = [executor.submit(optimize_pulse_schedule, **kw) for kw in tasks]
 
     results = []
@@ -557,7 +576,7 @@ with ProcessPoolExecutor(max_workers=45) as executor:
             results.append(future.result())
         except Exception as e:
             print("Worker raised:", e)
-
+'''
 
 depths = [result['max_depth_mm'] for result in results]
 
