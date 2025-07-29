@@ -4,15 +4,17 @@ import pandas as pd
 from math import exp
 import matplotlib.pyplot as plt
 
+from scipy.signal import find_peaks
+
 # Load water absorption data
 # df = pd.read_csv('/home/bruno/Desktop/keorkle/Brain Reading/code/data/water_data.csv', header=0)
 #water_skull_data = pd.read_csv('/workspace/Simple_NIRs_simulation/data/super_extended_water_skull_data.csv', header=0)
 #water_skull_data=water_skull_data.drop(columns='Unnamed: 0')
-water_skull_data = pd.read_csv('/workspace/Simple_NIRs_simulation/data/low_super_extended_water_skull_data.csv', header=0)
+water_skull_data = pd.read_csv('/workspace/Simple_NIRs_simulation/data/low_low_super_extended_water_skull_data.csv', header=0)
 
 
 
-
+'''
 def plot_spectrum(
     y,
     label='Max Detectable Depth mm',
@@ -107,13 +109,129 @@ def plot_spectrum(
 
     return filepath
 
+'''
 
+def plot_spectrum(
+    y,
+    label='Max Detectable Depth mm',
+    log=True,
+    root_dir='.',
+    dpi=300,
+    figsize=(8, 5),
+    peak_prominence=None
+):
+    """
+    Plot absorption spectrum against wavelength and save the figure.
+
+    Parameters
+    ----------
+    y : array-like
+        Values to plot on the y-axis corresponding to water_skull_data['lambda'].
+    label : str
+        Label for y-axis, title, and filename.
+    log : bool
+        If True, uses log-log scale; else linear.
+    root_dir : str
+        Directory to save the plot.
+    dpi : int
+        Resolution of saved figure.
+    figsize : tuple
+        Figure size (width, height).
+    peak_prominence : float or None
+        Minimum prominence for peak detection (passed to scipy.signal.find_peaks).
+    """
+    # Ensure output directory exists
+    os.makedirs(root_dir, exist_ok=True)
+
+    # Extract wavelength (nm) and convert to numpy arrays
+    x = water_skull_data['lambda'].values
+    y_arr = np.asarray(y)
+
+    # Detect peaks in y
+    peaks, properties = find_peaks(y_arr, prominence=peak_prominence)
+    peak_wls = x[peaks]
+
+    # Prepare color cycle for peak lines
+    color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
+    n_colors = len(color_cycle)
+
+    # Function to format wavelength label
+    def format_wl(wl_nm):
+        if wl_nm >= 1e6:
+            return f"{wl_nm/1e6:.2f} mm"
+        elif wl_nm >= 1e3:
+            return f"{wl_nm/1e3:.2f} μm"
+        else:
+            return f"{wl_nm:.0f} nm"
+
+    # Create plot
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.7)
+
+    # Plot main curves
+    if log:
+        ax.loglog(x, y_arr, label=label, linewidth=2)
+        ax.loglog(x, water_skull_data['mu_a_water'], alpha=0.4,
+                  linestyle='--', label='Water μa')
+        secax = ax.secondary_yaxis('right')
+        secax.set_ylabel('Water μa (m⁻¹)')
+    else:
+        ax.plot(x, y_arr, label=label, linewidth=2)
+        ax.plot(x, water_skull_data['mu_a_water'], alpha=0.4,
+                linestyle='--', label='Water μa')
+        secax = ax.secondary_yaxis('right')
+        secax.set_ylabel('Water μa (m⁻¹)')
+
+    # Shade spectral bands
+    bands = {
+        'VIS–NIR (650–950 nm)':   (650,   950,   '#a6cee3'),
+        'SWIR (950–1450 nm)':     (950,  1450,   '#1f78b4'),
+        'Mid-IR (1450–25000 nm)': (1450,25000,   '#b2df8a'),
+        'Microwave (≥1 mm)':      (1e6,  1e7,   '#33a02c'),
+    }
+    for lam0, lam1, color in bands.values():
+        ax.axvspan(lam0, lam1, color=color, alpha=0.2)
+
+    # Horizontal reference lines
+    ax.axhline(1.0, color='k', linestyle='--', linewidth=1, alpha=0.7)
+    ax.axhline(2.0, color='k', linestyle='-.', linewidth=1, alpha=0.7)
+    ax.axhline(30.0, color='purple', linestyle='--', linewidth=1,
+               alpha=0.7, label='Transcranial threshold')
+
+    # Add colored vertical lines at detected peaks
+    for idx, wl in enumerate(peak_wls):
+        color = color_cycle[idx % n_colors]
+        label_str = format_wl(wl)
+        ax.axvline(wl, color=color, linestyle=':', linewidth=1, alpha=0.8,
+                   label=label_str)
+
+    # Labels, title, and legend
+    ax.set_xlabel('Wavelength (nm)', fontsize=12)
+    ax.set_ylabel(label, fontsize=12)
+    ax.set_title(label, fontsize=14)
+    ax.legend(loc='best', fontsize=8, ncol=2)
+
+    # Finalize and save
+    fig.tight_layout()
+    safe_label = label.lower().replace(' ', '_')
+    filename = f"{safe_label}.png"
+    filepath = os.path.join(root_dir, filename)
+    fig.savefig(filepath, dpi=dpi)
+    plt.close(fig)
+    return filepath
 
     import sys
 
+
+
+get_extinction_coefficient  = lambda mu_s, mu_a: np.sqrt(3*mu_a*(mu_a+mu_s))
+
+
+
 def get_resolution(I0_avg, t_run, threshold_signal, pulse_snr_boost, mu_a_brain_m, mu_s_brain_p, mu_a_skull_m, mu_s_skull_p,  skull_depth_mm, depth_mm = 0.4, NEP = 1e-14):
 
-
+    mu_ext_brain = get_extinction_coefficient(mu_s_brain_p, mu_a_brain_m)
+    mu_ext_skull = get_extinction_coefficient(mu_s_skull_p, mu_a_skull_m)
     
 
     d_skull = skull_depth_mm * 1e-3
@@ -151,10 +269,10 @@ def get_resolution(I0_avg, t_run, threshold_signal, pulse_snr_boost, mu_a_brain_
  
 
     # two-way transmission through skull:
-    F_skull = np.exp(-2.0 * mu_a_skull_m * d_skull)
+    F_skull = np.exp(-2.0 * mu_ext_skull * d_skull)
 
     # Energy returning at zero lateral offset
-    E_center = E_incident * F_skull * np.exp(-2.0 * mu_a_brain_m * depth)
+    E_center = E_incident * F_skull * np.exp(-2.0 * mu_ext_brain * depth)
 
     # Total SNR including pulse averaging
     # (E_center/threshold_sig) is SNR for a single detection window
@@ -253,6 +371,9 @@ def max_detectable_depth(
         - status: "OK" or reason why no detection possible
     """
 
+    mu_ext_brain = get_extinction_coefficient(mu_s_prime_brain, mu_a_brain)
+    mu_ext_skull = get_extinction_coefficient(mu_s_prime_skull, mu_a_skull)
+
     # Compute round-trip skull factor
     F_skull = 1.0
     if skull:
@@ -260,7 +381,7 @@ def max_detectable_depth(
             raise ValueError("mu_a_skull and skull_thickness_mm must be set if skull=True.")
         skull_thickness_m = skull_thickness_mm * 1e-3
         # Round-trip through skull
-        F_skull = np.exp(-2 * mu_a_skull * skull_thickness_m)
+        F_skull = np.exp(-2 * mu_ext_skull * skull_thickness_m)
 
     # Compute total incident energy per area
     E_incident = I0 * exposure_time  # [J/m²]
@@ -277,7 +398,7 @@ def max_detectable_depth(
     # Solve for depth: E_signal(depth) = E_incident * F_skull * exp(-2 μ_a_brain d) ≥ threshold_signal
     # ⇒ exp(-2 μ_a_brain d) ≥ threshold_signal / (E_incident * F_skull)
     frac_required = threshold_signal / (E_incident * F_skull)
-    max_depth_m = -np.log(frac_required) / (2 * mu_a_brain)
+    max_depth_m = -np.log(frac_required) / (2 * mu_ext_brain)
     max_depth_mm = max_depth_m * 1e3
 
     return {
@@ -529,9 +650,9 @@ max_workers = os.cpu_count()   # e.g. 16 on a 8‑core/16‑thread machine
 print(f"Detected {max_workers} logical CPUs")
 
 
-amplitude_grid = np.logspace(18, 23, 10)
-pulse_freq_grid = np.logspace(2, 9, 10)
-pulse_duration_grid= np.logspace(-14, -6, 10)
+amplitude_grid = np.logspace(18, 23, 9)
+pulse_freq_grid = np.logspace(2, 9, 9)
+pulse_duration_grid= np.logspace(-14, -6, 9)
 
 
 
@@ -548,7 +669,7 @@ for wavelength, mu_water, mu_skull in water_skull_data.values:
         'skull': True,
         'mu_a_skull': (mu_skull) * 100,
         'mu_s_skull_p': 7 * 100,
-        'skull_thickness_mm': 5.8,
+        'skull_thickness_mm': 5.4,
         'NEP': 1e-14,
         'arrhenius_threshold': arrhenius_threshold,
         'arrhenius_threshold_pulse': arrhenius_threshold_pulse,
@@ -561,7 +682,7 @@ for wavelength, mu_water, mu_skull in water_skull_data.values:
 def run_optimize_pulse_schedule(kwargs):
     return optimize_pulse_schedule(**kwargs)
 
-with ProcessPoolExecutor(max_workers=190) as executor:
+with ProcessPoolExecutor(max_workers=90) as executor:
 
     results = list(executor.map(run_optimize_pulse_schedule, tasks))
 
@@ -599,4 +720,4 @@ rr = [['depths',depths], ['res_0',res_0], ['res_0_inf',res_0_inf], ['res_04',res
 
 
 for r in rr:
-    plot_spectrum(r[1], label=r[0], root_dir='/workspace/Simple_NIRs_simulation/outputs/1')
+    plot_spectrum(r[1], label=r[0], root_dir='/workspace/Simple_NIRs_simulation/outputs/7')
